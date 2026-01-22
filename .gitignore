@@ -1,0 +1,36 @@
+# --- 核心忽略 (编译文件) ---
+target/
+*.class
+*.log
+
+# --- 各种压缩包 ---
+# 忽略所有 jar 包
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# 【重要】保留 Maven Wrapper (方便别人下载你的项目后直接运行)
+!/.mvn/wrapper/maven-wrapper.jar
+
+# --- IntelliJ IDEA (全忽略，保持项目干净) ---
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# --- Eclipse ---
+.settings/
+.classpath
+.project
+.factorypath
+.springBeans
+
+# --- VS Code ---
+.vscode/
+
+# --- 系统文件 ---
+.DS_Store
+Thumbs.db
