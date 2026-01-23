@@ -4,16 +4,15 @@ import com.zhong.pojo.User;
 import com.zhong.service.UserService;
 import com.zhong.utils.JWTUtils;
 import com.zhong.utils.MD5Util;
+import com.zhong.utils.ThreadLocalUtil;
 import jakarta.validation.constraints.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -72,24 +71,37 @@ public class UserController {
         }
     }
 
+/*
+    @GetMapping("/userinfo")
+    public Result<User> getUserInfo(@RequestHeader(name = "Authorization") String token){
 
+        // 获取token并解析得到username
+        Map<String, Object> claims = JWTUtils.parseToken(token);
+        String username = (String) claims.get("username");
+        User user = userService.findNameById(username);
+        return Result.success(user);
+    }
+*/
 
+    @GetMapping("/userinfo")
+    public Result<User> getUserInfo(){
 
+        // 获取token并解析得到username
 
+        Map<String, Object> claims = ThreadLocalUtil.get();
+        String username = (String) claims.get("username");
+        User user = userService.findNameById(username);
 
+        log.info("用户信息获取成功");
+        return Result.success(user);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    @PutMapping("/update")
+    public Result updateIonfo(@RequestBody @Validated User user){
+        log.info("用户信息更新");
+        userService.updateUserInfo(user);
+        return Result.success();
+    }
 
 
 
