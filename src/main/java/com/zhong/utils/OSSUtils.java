@@ -10,6 +10,7 @@ import java.io.InputStream;
 
 public class OSSUtils {
 
+    // ACCESS_KEY_ID,ACCESS_KET_SECRET,ENDPOINT,BUCKETNAME都需要自己提供
 
     public static String uploadFile(String objectName, InputStream inputStream) throws Exception {
         // 定义一个空的url地址
@@ -52,6 +53,8 @@ public class OSSUtils {
             PutObjectResult result = ossClient.putObject(putObjectRequest);
 
             // 获取上传文件的URL
+        url = "https://"+BUKETNAME+"."+ENDPOINT.substring(ENDPOINT.lastIndexOf("/")+1)+"/"+objectName;
+            
         } catch (OSSException oe) {
             System.out.println("Caught an OSSException, which means your request made it to OSS, "
                     + "but was rejected with an error response for some reason.");
