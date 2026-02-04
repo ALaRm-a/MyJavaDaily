@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 这里的namespace就是「前置指定的Mapper全名称」，必须和接口一致 -->
+<mapper namespace="com.zhong.mapper.ArticleMapper">
+
+    <!-- 里面的select/insert/update/delete的id，和接口方法名一致 -->
+<!--    resulttype是全类名-->
+    <select id="list" resultType="com.zhong.pojo.Article">
+        select * from article
+        <where>
+            <if test="categoryId!=null">
+                category_id=#{categoryId}
+            </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+        </where>
+    </select>
+
+</mapper>

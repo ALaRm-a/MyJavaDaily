@@ -1,5 +1,6 @@
 package com.zhong;
 
+import com.zhong.utils.MD5Util;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -35,6 +36,6 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+        System.out.printf(MD5Util.encrypt("123456"));
     }
 }

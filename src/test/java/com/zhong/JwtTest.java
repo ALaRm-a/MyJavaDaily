@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.zhong.utils.MD5Util;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -38,5 +39,14 @@ public class JwtTest {
 
         Map<String, Claim> claims = decodedJWT.getClaims();
         System.out.println(claims.get("user"));
+    }
+
+
+    @Test
+    public void test() {
+
+        System.out.println(MD5Util.encrypt("12345678"));
+        System.out.println("25d55ad283aa400af464c76d713c07ad");
+
     }
 }
